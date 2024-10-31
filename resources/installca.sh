@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "Script is running..."
-ls 
+ls -l /home/vaske/Documents
