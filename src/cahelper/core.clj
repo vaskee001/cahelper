@@ -1,13 +1,18 @@
 (ns cahelper.core
-  (:require [ring.adapter.jetty :as jetty]
-            [compojure.core :refer [defroutes GET]]
-            [compojure.route :as route]
-            [ring.util.response :refer [response]]))
+  (:require [ring.adapter.jetty :refer [run-jetty]]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.middleware.resource :refer [wrap-resource]]))
 
-(defroutes app-routes
-  (GET "/" [] (response "Hello from the backend!"))
-  (GET "/api/data" [] (response {:message "This is your API!"}))
-  (route/not-found "Not Found"))
+(defn handler [request]
+  (case (:uri request)
+    "/" {:status 200
+         :headers {"Content-Type" "text/html"}
+         :body (slurp "resources/public/index.html")}
+    {:status 404
+     :body "Page not found"}))
 
 (defn -main []
-  (jetty/run-jetty app-routes {:port 3000 :join? false}))
+  (let [app (-> handler
+                (wrap-defaults site-defaults)
+                (wrap-resource "public"))]
+    (run-jetty app {:port 3000})))
