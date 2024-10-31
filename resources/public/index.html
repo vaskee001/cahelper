@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{csrfToken}}">
     <title>CAHelper - Home</title>
-    <link rel="stylesheet" href="/css/styles.css">  <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <nav class="navbar">
@@ -16,8 +17,53 @@
         </div>
     </nav>
     <div class="content">
-        <h1>Welcome to CAHelper!</h1>
-        <p>This is the home page.</p>
+        <h1>Home</h1>
+        <p>This is the clients home page.</p>
+        <div id="output-container">
+            <div id="output" class="output-box"></div>
+        </div>
+        <button id="install-ca-button" style="display: none;">Install CA</button> 
     </div>
+
+    <script>
+        
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      
+        fetch("/checkca")
+          .then((response) => response.text())
+          .then((data) => {
+            const outputDiv = document.getElementById("output");
+            outputDiv.textContent = data;
+      
+            if (data.includes("CA is present")) {
+              outputDiv.classList.add("output-success");
+              outputDiv.classList.remove("output-failure", "output-pending");
+              document.getElementById("install-ca-button").style.display = "none";
+            } else {
+              outputDiv.classList.add("output-failure");
+              outputDiv.classList.remove("output-success", "output-pending");
+              document.getElementById("install-ca-button").style.display = "block";
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      
+        document
+          .getElementById("install-ca-button")
+          .addEventListener("click", function () {
+            fetch("/installca")
+              .then((response) => response.text())
+              .then((data) => {
+                const outputDiv = document.getElementById("output");
+                outputDiv.textContent = data;
+                outputDiv.classList.add("output-pending"); 
+                outputDiv.classList.remove("output-failure", "output-success");
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          });
+      </script>
 </body>
 </html>
