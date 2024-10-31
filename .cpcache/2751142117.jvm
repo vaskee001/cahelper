@@ -1,0 +1,3 @@
+-XX:-OmitStackTraceInFastThrow
+-Dclojure.core.async.go-checking=true
+-Dclojure.main.report=stderr
