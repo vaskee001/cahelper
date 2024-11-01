@@ -1,1 +1,1 @@
-["^ ","~$clojurescript-version",["^ ","~:row",1,"~:col",1,"~:name","^0","~:ns","~$user","~:top-ns",null],"~:filename","/home/vaske/.m2/repository/org/clojure/clojurescript/1.11.132/clojurescript-1.11.132.jar:cljs/externs.clj"]
+["^ ","~$command-exists?",["^ ","~:row",3,"~:col",1,"~:fixed-arities",["~#set",[1]],"~:name","^0","~:ns","~$user","~:top-ns",null,"~:arities",["^ ","~i1",["^ ","~:ret","~:boolean","~:arglist-str","[cmd]"]],"~:type","~:fn"],"~:filename","/home/vaske/Documents/Clojure/cahelper2/resources/iscainstalled.bb"]
