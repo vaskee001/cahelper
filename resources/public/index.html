@@ -35,7 +35,7 @@
             const outputDiv = document.getElementById("output");
             outputDiv.textContent = data;
       
-            if (data.includes("iNO s present")) {
+            if (data.includes("!is present")) {
               outputDiv.classList.add("output-success");
               outputDiv.classList.remove("output-failure", "output-pending");
               document.getElementById("install-ca-button").style.display = "none";

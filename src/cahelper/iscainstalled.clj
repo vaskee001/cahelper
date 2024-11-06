@@ -2,8 +2,8 @@
   (:require [clojure.java.shell :refer [sh]]))
 
 (defn command-exists? [cmd]
-  (let [result (sh cmd "--version")]  ; Try to get the version of the command
-    (zero? (:exit result))))           ; If the exit code is 0, the command exists
+  (let [result (sh cmd "--version")]  
+    (zero? (:exit result))))           
 
 (defn check-ca-installation []
   (if (command-exists? "openvpn")

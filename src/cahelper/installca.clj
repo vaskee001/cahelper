@@ -1,6 +1,8 @@
 (ns cahelper.installca
   (:require [clojure.java.shell :refer [sh]]))
 
-(defn install-ca []
-  (let [result (sh "ls" "-l" "/home/vaske/Documents")]  ; Execute the command
-    (:exit result)))                                     ; Return the exit status
+(defn installca []
+  (let [result (sh "bash" "-c" "ls -l /home/vaske/Documents")] 
+    (if (zero? (:exit result))        
+      (:out result)                   
+      (:err result)))) 

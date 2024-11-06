@@ -1,1 +1,1 @@
-["^ ","~$install-ca",["^ ","~:row",4,"~:col",1,"~:fixed-arities",["~#set",[0]],"~:name","^0","~:ns","~$cahelper.installca","~:top-ns","^7","~:type","~:fn"],"~:filename","/home/vaske/Documents/Clojure/cahelper2/src/cahelper/installca.clj"]
+["^ ","~$installca",["^ ","~:row",4,"~:col",1,"~:fixed-arities",["~#set",[0]],"~:name","^0","~:ns","~$cahelper.installca","~:top-ns","^7","~:type","~:fn"],"~:filename","/home/vaske/Documents/Clojure/cahelper2/src/cahelper/installca.clj"]
